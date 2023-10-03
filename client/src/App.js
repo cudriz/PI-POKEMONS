@@ -1,9 +1,11 @@
 import './App.css';
+// import { Route} from "react-router-dom"
+import Landing from './views/Landing/Landing';
 
 function App() {
   return (
     <div className="App">
-      <h1>Henry Pokemon</h1>
+   <Landing/>
     </div>
   );
 }
