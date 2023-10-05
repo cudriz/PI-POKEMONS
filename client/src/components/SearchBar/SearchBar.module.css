@@ -1,0 +1,14 @@
+.search{
+    display: flex;
+    align-items: center
+
+}
+.button {
+    border: none; /* Sin bordes */
+    padding: 10px 15px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente */
+    text-decoration: none; /* Sin subrayado */
+    cursor: pointer; /* Cambia el cursor al pasar el ratón */
+    transition: color 0.3s; /* Transición de color suave al pasar el ratón */
+  }
+

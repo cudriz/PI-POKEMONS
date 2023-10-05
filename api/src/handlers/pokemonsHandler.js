@@ -31,7 +31,6 @@ const getIdHandler = async (req, res) => {
   }
 };
 
-
 const createHandler = async (req,res)=>{
 const { 
   Nombre,

@@ -1,0 +1,25 @@
+.mainContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 15px;
+    border: 1px solid black;
+    padding: 10px;
+    padding: 10px;
+  
+}
+
+.button {
+    background-color: transparent; /* Botones transparentes */
+    border: none; /* Sin bordes */
+    padding: 10px 15px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente */
+    color: #fff; /* Color del texto */
+    text-decoration: none; /* Sin subrayado */
+    cursor: pointer; /* Cambia el cursor al pasar el ratón */
+    transition: color 0.3s; /* Transición de color suave al pasar el ratón */
+  }
+
+  .button:hover {
+    color: #007bff; /* Cambia el color del texto al pasar el ratón */
+  }

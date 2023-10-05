@@ -1,0 +1,10 @@
+.container{
+    
+    display: flex;
+    justify-content: space-around;
+    border-radius: 15px;
+    flex-wrap: wrap;
+    gap: 1em;
+   
+   
+}
