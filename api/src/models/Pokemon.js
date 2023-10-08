@@ -9,15 +9,15 @@ module.exports = (sequelize) => {
       primaryKey: true,
       defaultValue:DataTypes.UUIDV4,
     },
-    Nombre: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    Imagen: {
+    image: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    Vida:{
+    hp:{
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
@@ -25,11 +25,11 @@ module.exports = (sequelize) => {
         min: 0
       }
     },
-    Ataque: {
+    attack: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    Defensa: {
+    defense: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -41,4 +41,5 @@ module.exports = (sequelize) => {
   {
     timestamps: false,
   });
+  
 };

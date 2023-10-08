@@ -22,9 +22,9 @@ const Detail = () => {
           {pokemon.image && <img src={pokemon.image} alt={pokemon.name} />}
           {pokemon.name && <h2>Name: {pokemon.name}</h2>}
           {pokemon.id && <h2>Id: {pokemon.id}</h2>}
-          {pokemon.vida && <p>Vida: {pokemon.vida}</p>}
-          {pokemon.ataque && <p>Ataque: {pokemon.ataque}</p>}
-          {pokemon.defensa && <p>Defensa: {pokemon.defensa}</p>}
+          {pokemon.hp && <p>hp: {pokemon.hp}</p>}
+          {pokemon.attack && <p>attack: {pokemon.attack}</p>}
+          {pokemon.defense && <p>defense: {pokemon.defense}</p>}
         </>
       )}
     </div>

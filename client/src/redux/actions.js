@@ -5,6 +5,8 @@ export const GET_POKEMONS = "GET_POKEMONS"
 export const GET_TIPE_POKEMONS = "GET_TIPE_POKEMONS"
 export const POST_POKEMON = "POST_POKEMON"
 export const PAGINATE= "PAGINATE"
+export const FILTER = "FILTER"
+export const ORDER = "ORDER"
 
 export const getPokemons = () => {
     return async function (dispatch) {
@@ -60,6 +62,34 @@ export const paginatePokemons = (order) =>{
       dispatch({
  type: PAGINATE,
  payload: order
+      })
+    } catch (error) {
+      
+    }
+  }
+}
+
+export const filterPokemonsAction = (types) =>{
+
+  return async function(dispatch){
+    try {
+      dispatch({
+ type: FILTER,
+ payload: types
+      })
+    } catch (error) {
+      
+    }
+  }
+}
+
+export const orderPokemonsAction = (orderA) =>{
+
+  return async function(dispatch){
+    try {
+      dispatch({
+ type: ORDER,
+ payload: orderA
       })
     } catch (error) {
       

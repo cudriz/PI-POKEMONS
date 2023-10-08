@@ -10,10 +10,11 @@ const CardsContainer = ({ cards }) => {
           key={pokemon.id}
           id={pokemon.id}
           name={pokemon.name}
-          ataque={pokemon.ataque}
-          defensa={pokemon.defensa}
-          vida={pokemon.vida}
+          attack={pokemon.attack}
+          defense={pokemon.defense}
+          hp={pokemon.hp}
           image={pokemon.image}
+          types={pokemon.types}
         />
       ))}
     </div>

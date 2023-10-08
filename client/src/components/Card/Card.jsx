@@ -2,9 +2,7 @@ import React from "react";
 import style from "./Card.module.css";
 import { Link } from "react-router-dom";
 
-
-
-const Card = ({ id, name, image, vida }) => {
+const Card = ({ id, name, image, types }) => {
 
   return (
     <div className={style.card}>
@@ -12,7 +10,7 @@ const Card = ({ id, name, image, vida }) => {
       <Link to={`/detail/${id}`}>
         <p className={style.name}>Name: {name}</p>
       </Link>
-      <p className={style.vida}>Vida: {vida}</p>
+      <p className={style.types}>Types: {Array.isArray(types) ? types.join(', ') : ''}</p>
      
     </div>
   );

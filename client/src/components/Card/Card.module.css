@@ -12,12 +12,17 @@
   .card:hover {
     transform: scale(1.05); /* Escala ligeramente la tarjeta al pasar el cursor */
   }
-
+  .img {
+    max-width: 100px; /* Ancho máximo de la imagen */
+    max-height: 100px; /* Altura máxima de la imagen */
+    display: block; /* Esto asegura que la imagen no tenga márgenes innecesarios */
+    margin: 0 auto; /* Centra la imagen horizontalmente */
+  }
  .name{
     margin-bottom: 5px; /* Espacio adicional después del nombre */
     color: #0b29d1
     
   }
-  .vida{
+  .types{
     color: #0b29d1; /* Color de texto personalizado */
  }

@@ -1,71 +1,61 @@
-import { useEffect, useState } from "react";
-import {useDispatch, useSelector} from 'react-redux'
-import {getTipePokemons, postPokemon} from '../../redux/actions'
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { getTipePokemons, postPokemon } from '../../redux/actions';
 import style from "./Form.module.css";
 
 const Form = () => {
   const dispatch = useDispatch();
+  const allTypes = useSelector((state) => state.allTypes);
 
-  const allTipes = useSelector((state)=> state.allTypes)
+  useEffect(() => {
+    dispatch(getTipePokemons());
+  }, [dispatch]);
 
-  useEffect(()=>{
-dispatch(getTipePokemons())
-  }, [dispatch])
   const [state, setState] = useState({
-    Nombre: "",
-    Imagen: "",
-    Vida: 0,
-    Ataque: 0,
-    Defensa: 0,
-    Tipos: []
+    name: "",
+    image: "",
+    hp: 0,
+    attack: 0,
+    defense: 0,
+    types: []
   });
 
   const [errors, setErrors] = useState({
-    Nombre: "",
-    Imagen: "",
-    Vida: "",
-    Ataque: "",
-    Defensa: "",
-    Tipos: ""
+    name: "",
+    image: "",
+    hp: "",
+    attack: "",
+    defense: "",
+    types: ""
   });
 
   const validate = (state, name) => {
-switch (name) {
-  case "Nombre":
-if(state.Nombre === ""){
-  setErrors({...errors, Nombre: "campo requerido." })
-}else if (state.Nombre.length > 30){
-  setErrors({...errors, Nombre: "Nombre demasiado largo." })
-}else {
-  setErrors({...errors, Nombre: ""})
-}
-  // case "Imagen":
+    switch (name) {
+      case "name":
+        if (state.name === "") {
+          setErrors({ ...errors, name: "Campo requerido." });
+        } else if (state.name.length > 30) {
+          setErrors({ ...errors, name: "Nombre demasiado largo." });
+        } else {
+          setErrors({ ...errors, name: "" });
+        }
+        break;
 
-  // case "Vida":
+      // Agrega validaciones para otros campos aquí
 
-  // case "Ataque":
-
-  // case "Defensa":
-
-  // case "Tipos":
-
-    
-   break
-
-  default: 
-    break;
-}
-
+      default:
+        break;
+    }
   };
 
   const handleChange = (event) => {
     const property = event.target.name;
     const value = event.target.value;
 
-    if (event.target.name === "Tipos") {
+    if (event.target.name === "types") {
       setState({
         ...state,
-        Tipos: [...state.Tipos, event.target.value]
+        types: [...state.types, event.target.value]
       });
     } else {
       setState({
@@ -73,30 +63,28 @@ if(state.Nombre === ""){
         [property]: value
       });
     }
-    validate({
-      ...state,
-      [property]: value
-    }, property)
+
+    validate(
+      {
+        ...state,
+        [property]: value
+      },
+      property
+    );
   };
 
-const disableButton = () =>{
-  let disabledAux = true;
-
-  for (let error in errors){
-    if(errors[error] === "") disabledAux = false;
-    else{
-      disabledAux = true;
-      break;
+  const disableButton = () => {
+    for (let error in errors) {
+      if (errors[error] !== "") {
+        return true; // Habilita el botón si hay algún error
+      }
     }
-  }
-  return disabledAux
-}
-
+    return false; // Deshabilita el botón si no hay errores
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-dispatch(postPokemon(state));
-
+    dispatch(postPokemon(state));
   };
 
   return (
@@ -107,59 +95,59 @@ dispatch(postPokemon(state));
         <input
           onChange={handleChange}
           type="text"
-          name="Nombre"
-          value={state.Nombre}
+          name="name"
+          value={state.name}
         />
-    <div> <p>{errors.Nombre}</p></div>
-    
+        <div>
+          <p>{errors.name}</p>
+        </div>
 
         <label>Imagen: </label>
         <input
           onChange={handleChange}
           type="text"
-          name="Imagen"
-          value={state.Imagen}
+          name="image"
+          value={state.image}
         />
-        
 
         <label>Vida: </label>
         <input
           onChange={handleChange}
           type="text"
-          name="Vida"
-          value={state.Vida}
+          name="hp"
+          value={state.hp}
         />
 
         <label>Ataque: </label>
         <input
           onChange={handleChange}
           type="text"
-          name="Ataque"
-          value={state.Ataque}
+          name="attack"
+          value={state.attack}
         />
-       
 
         <label>Defensa: </label>
         <input
           onChange={handleChange}
           type="text"
-          name="Defensa"
-          value={state.Defensa}
+          name="defense"
+          value={state.defense}
         />
-       
 
         <label>Tipos: </label>
-        <select onChange={handleChange} name="Tipos" id="" >
-          {allTipes.map((t) => (
+        <select onChange={handleChange} name="types" id="">
+          {allTypes.map((t) => (
             <option key={t} value={t}>
               {t}
             </option>
           ))}
         </select>
-   
-<div>
-  {state.Tipos.map((t)=> <span>{t}/</span>)}
-</div>
+
+        <div>
+          {state.types.map((t) => (
+            <span key={t}>{t}/</span>
+          ))}
+        </div>
         <input disabled={disableButton()} type="submit" />
       </form>
     </div>
