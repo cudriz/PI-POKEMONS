@@ -21,7 +21,7 @@ const  getAllPokemons = async () =>{
     
     const pokemonsDb= await pokemon.findAll()
 
-    const pokemonsApi = await axios.get(`${URL_API}?limit=10`);
+    const pokemonsApi = await axios.get(`${URL_API}?limit=50`);
     const pokemonsApiResults = pokemonsApi.data.results;
     // Mapeamos los resultados y hacemos una solicitud para obtener los detalles de cada Pokémon
     const pokemonDetailsPromises = pokemonsApiResults.map(async (pokemon) => {
@@ -67,32 +67,7 @@ const getPokemonByName = async  (name)=>{
     } 
   }
 };
- /*
 
-const getPokemonByName = async  (name) => {
- 
-  const pokemonsApi = await axios.get(`${URL_API}?limit=10`);
-  const pokemonsApiResults = pokemonsApi.data.results || [];
-
-  // Mapeamos los resultados y hacemos una solicitud para obtener los detalles de cada Pokémon
-  const pokemonDetailsPromises = ( pokemonsApiResults || []).map(async (pokemon) => {
-    const pokemonResponse = await axios.get(pokemon.url);
-    const info = pokemonResponse.data.results;
-    const pokeponApi = infoCleaner(info);
-    return pokeponApi;
-  });
-
-  const pokemonDetails = await Promise.all(pokemonDetailsPromises);
-
-  // Filtramos los Pokémon por nombre
-  const pokemonFiltered = pokemonDetails.flat().filter((pokemon) => pokemon.name === name);
-
-  // Buscamos en la base de datos
-  const pokemonDb = await pokemon.findAll({ where: { Nombre: name } });
-
-  return [...pokemonFiltered, ...pokemonDb];
-};
-*/
 const createPokemonDb = async  (
     Nombre,
     Imagen,

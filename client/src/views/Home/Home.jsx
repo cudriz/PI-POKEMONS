@@ -1,42 +1,33 @@
-import CardsContainer from "../../components/Cards/CardsContainer";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect,  useState } from "react";
-import { getPokemons, } from "../../redux/actions";
-import Pagination from "../../components/Pagination/Pagination";
+import { getPokemons, paginatePokemons } from "../../redux/actions";
+import CardsContainer from "../../components/Cards/CardsContainer";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const pokemons = useSelector((state) => state.pokemons);
-  
+
+  const pokemonData = useSelector((state) => state.pokemons); 
+
+
   useEffect(() => {
     dispatch(getPokemons());
   }, [dispatch]);
 
-  const cardsPerPage = 27; // Número de tarjetas por página
-  const [currentPage, setCurrentPage] = useState(1);
+const paginate = (event) => {
+dispatch(paginatePokemons(event.target.name))
+}
 
-    // Calcular el índice de inicio y fin de las tarjetas en la página actual
-    const indexOfLastCard = currentPage * cardsPerPage;
-    const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-    const currentCards = pokemons.slice(indexOfFirstCard, indexOfLastCard);
-
-     // Función para cambiar de página
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+ 
 
   return (
-    <>
+    <div>
+    <div>
+      <button name='prev'onClick={paginate}>Prev</button> <button name='next'onClick={paginate}>Next</button>
+    </div>
       <h1>Pokemons</h1>
+      <CardsContainer cards={pokemonData} />
       
-        <CardsContainer cards={currentCards} />
-        <Pagination
-         cardsPerPage={cardsPerPage}
-         totalCards={pokemons.length}
-         currentPage={currentPage}
-         paginate={paginate}
-        
-        />
-    
-    </>
+    </div>
   );
 };
 

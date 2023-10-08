@@ -6,10 +6,15 @@ const CardsContainer = ({ cards }) => {
   return (
     <div className={style.container}>
       {cards.map((pokemon) => (
-        <Card 
-        key={pokemon.id} 
-        id={pokemon.id}
-        url={pokemon.url} />
+        <Card
+          key={pokemon.id}
+          id={pokemon.id}
+          name={pokemon.name}
+          ataque={pokemon.ataque}
+          defensa={pokemon.defensa}
+          vida={pokemon.vida}
+          image={pokemon.image}
+        />
       ))}
     </div>
   );
